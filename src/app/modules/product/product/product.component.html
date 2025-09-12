@@ -47,12 +47,12 @@
       <!--account column-->
       <ng-container matColumnDef="account">
         <th mat-header-cell *matHeaderCellDef>Cantidad</th>
-        <td mat-cell *matCellDef="let element">{{ element.cantidad }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.account }}</td>
       </ng-container>
       <!--category column-->
       <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Category</th>
-        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+        <th mat-header-cell *matHeaderCellDef>Categoria</th>
+        <td mat-cell *matCellDef="let element">{{ element.category.name }}</td>
       </ng-container>
       <!--picture column-->
       <ng-container matColumnDef="picture">
@@ -66,8 +66,22 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let element; let i = index">
-          <button mat-icon-button class="accent">
-            <mat-icon aria-label="Edit">edit</mat-icon>
+          <button
+            mat-icon-button
+            class="accent"
+            (click)="
+              edit(
+                element.id,
+                element.name,
+                element.price,
+                element.account,
+                element.category
+              )
+            "
+          >
+            <mat-icon mat-icon-button class="accent" aria-label="Edit"
+              >edit</mat-icon
+            >
           </button>
 
           <button mat-icon-button class="accent">

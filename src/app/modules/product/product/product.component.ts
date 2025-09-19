@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { NewProductComponent } from '../new-product/new-product.component';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { ConfirmComponent } from '../../shared/components/confirm/confirm.component';
+import { UtilService } from '../../shared/services/util.service';
 
 @Component({
   selector: 'app-product',
@@ -15,12 +16,16 @@ import { ConfirmComponent } from '../../shared/components/confirm/confirm.compon
 })
 export class ProductComponent implements OnInit {
 
+  isAdmin: any;
+
   private productService = inject(ProductService);
   private snackBar = inject(MatSnackBar);
   public dialog = inject(MatDialog)
+  private util:UtilService = inject(UtilService);
 
   ngOnInit(): void {
     this.getProducts();
+    this.isAdmin = this.util.isAdmin();
   }
 
   displayedColumns: string[] = ['id', 'name', 'price', 'account', 'category','picture', 'actions'];
